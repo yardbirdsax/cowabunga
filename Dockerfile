@@ -18,6 +18,13 @@ RUN apk add --no-cache yq jq git bash curl openssl libc6-compat
 RUN curl -Lo /tmp/ghcli.tar.gz https://github.com/cli/cli/releases/download/v${GH_CLI_VERSION}/gh_${GH_CLI_VERSION}_linux_amd64.tar.gz
 RUN tar xzf /tmp/ghcli.tar.gz -C /tmp/ && \
     mv /tmp/gh_${GH_CLI_VERSION}_linux_amd64/bin/gh /usr/local/bin/
+RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
+RUN tgswitch 0.38.12
+RUN git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv && \
+    ln -s $HOME/.tfenv/bin/terraform /usr/local/bin/terraform && \
+    ln -s $HOME/.tfenv/bin/tfenv /usr/local/bin/tfenv
+RUN tfenv install latest
+RUN tfenv use latest
 COPY --from=gum /usr/local/bin/gum /usr/local/bin/gum
 COPY --from=gomplate /gomplate /usr/local/bin/gomplate
 ENTRYPOINT [ "/bin/bash" ]
