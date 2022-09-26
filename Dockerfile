@@ -1,5 +1,5 @@
 FROM ghcr.io/charmbracelet/gum:v0.6.0 as gum
-FROM hairyhenderson/gomplate:1.9.1-slim as gomplate
+FROM ghcr.io/hairyhenderson/gomplate:v3.11.3-alpine as gomplate
 
 
 FROM alpine:3.16
@@ -26,5 +26,5 @@ RUN git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv && \
 RUN tfenv install latest
 RUN tfenv use latest
 COPY --from=gum /usr/local/bin/gum /usr/local/bin/gum
-COPY --from=gomplate /gomplate /usr/local/bin/gomplate
+COPY --from=gomplate /bin/gomplate /usr/local/bin/gomplate
 ENTRYPOINT [ "/bin/bash" ]
