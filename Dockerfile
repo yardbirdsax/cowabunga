@@ -25,6 +25,7 @@ RUN git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv && \
     ln -s $HOME/.tfenv/bin/tfenv /usr/local/bin/tfenv
 RUN tfenv install latest
 RUN tfenv use latest
+RUN apk add --no-cache aws-cli && aws --version
 COPY --from=gum /usr/local/bin/gum /usr/local/bin/gum
 COPY --from=gomplate /bin/gomplate /usr/local/bin/gomplate
 ENTRYPOINT [ "/bin/bash" ]

@@ -11,3 +11,4 @@ A pre-made Docker image that has a set of tools for running shell scripts.
 * [**GitHub CLI:**](https://github.com/cli/cli) For interacting with GitHub.
 * [**tgswitch:**](https://github.com/warrensbox/tgswitch) For using Terragrunt.
 * [**tfenv:**](https://github.com/tfutils/tfenv) For using Terraform.
+* [**AWS CLI:**](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) For interacting with AWS.
