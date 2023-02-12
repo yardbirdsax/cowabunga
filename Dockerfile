@@ -1,10 +1,11 @@
-FROM ghcr.io/charmbracelet/gum:v0.6.0 as gum
+FROM ghcr.io/charmbracelet/gum:v0.9.0 as gum
 FROM ghcr.io/hairyhenderson/gomplate:v3.11.3-alpine as gomplate
 
 
 FROM alpine:3.16
 
-ARG GH_CLI_VERSION=2.15.0
+ARG GH_CLI_VERSION=2.23.0
+ARG TG_VERSION=0.43.2
 
 LABEL "maintainer"="Josh Feierman <josh@sqljosh.com>" \
       "repository"="https://github.com/yardbirdsax/cowabunga" \
@@ -19,7 +20,7 @@ RUN curl -Lo /tmp/ghcli.tar.gz https://github.com/cli/cli/releases/download/v${G
 RUN tar xzf /tmp/ghcli.tar.gz -C /tmp/ && \
     mv /tmp/gh_${GH_CLI_VERSION}_linux_amd64/bin/gh /usr/local/bin/
 RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
-RUN tgswitch 0.38.12
+RUN tgswitch ${TG_VERSION}
 RUN git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv && \
     ln -s $HOME/.tfenv/bin/terraform /usr/local/bin/terraform && \
     ln -s $HOME/.tfenv/bin/tfenv /usr/local/bin/tfenv
